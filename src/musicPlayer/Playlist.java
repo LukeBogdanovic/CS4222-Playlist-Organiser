@@ -10,16 +10,16 @@ public class Playlist {
 	}
 	
 	public String toString() {
-	String playlist,name;
-	name  = Playlist;
-	for(int i = 0;i < Tracks.size(); i++) {
-		Tracks.get(i).toString();
-	}
-	return playlist;
+	   String playlist,name;
+	   name  = Playlist;
+	   for(int i = 0;i < Tracks.size(); i++) {
+		   Tracks.get(i).toString();
+	   }
+	   return playlist;
 	}
 	
 	public void add(String title,String artist) {
-		Track("Honey","BROCKHAMPTON",2018,195);
+		
 	}
 	
 	public void add(String title,String artist,int year,int duration) {
@@ -31,23 +31,40 @@ public class Playlist {
 	}
 	
 	public boolean remove(String title) {
-		if()
+		if(title.contains()) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
 	public void showList() {
-		
+		if(Tracks.isEmpty()) {
+			System.out.println("The list is empty");
+		}else {
+			for(int i = 0; i < Tracks.size();i++) {
+				System.out.println(Tracks.get(i));
+			}
+		}
 	}
 	
 	public void play(boolean random) {
-		
+		Random rand = new Random();
+		if(random) {
+			int r = rand.nextInt(Tracks.size());
+			Track shuffle = Tracks.get(r);
+			System.out.println(shuffle);
+		}else if(!random) {
+			System.out.println();
+		}
 	}
 	
 	public void playOnly(String artist) {
-		
+		List<Track> artistSongs = new ArrayList<Track>();
 	}
 	
 	public void playOnly(int year) {
-		
+		List<Track> yearSongs = new ArrayList<Track>();
 	}
 
 }

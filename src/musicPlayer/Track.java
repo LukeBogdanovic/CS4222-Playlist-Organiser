@@ -1,29 +1,23 @@
 package musicPlayer;
-import java.util.*;
 
-public class Track {
-	private String Title;
-	private String Artist;
-	private int Year;
-	private int Duration;
-	List<String> songs = new ArrayList<String>();
+class Track implements Comparable<Track>{
+	String Title;
+	String Artist;
+	int Year;
+    int Duration;
 	
-	public Track(String title,String artist) {
-		Duration = 0;
-		Year = 0;
-		Artist = artist;
-		Title = title;
-		String track = toString();
-		songs.add(track);
+	Track(String title,String artist) {
+		this.Duration = 0;
+		this.Year = 0;
+		this.Artist = artist;
+		this.Title = title;
 	}
 	
-	public Track(String title,String artist,int year,int duration) {
-		Duration = duration;
-		Year = year;
-		Artist = artist;
-		Title = title;
-		String track = toString();
-		songs.add(track);
+	Track(String title,String artist,int year,int duration) {
+		this.Duration = duration;
+		this.Year = year;
+		this.Artist = artist;
+		this.Title = title;
 	}
 	
 	public String toString() {
@@ -40,10 +34,9 @@ public class Track {
 		return listing;
 	}
 	
-	public List<String> compareTo(List<String> music) {
-		List<String> Tracks = new ArrayList<String>(music);
-		Collections.sort(Tracks, String.CASE_INSENSITIVE_ORDER);
-		return Tracks;
+	public int compareTo(Track t) {
+		int title = this.Title.compareToIgnoreCase(t.Title);
+		return title == 0 ? this.Title.compareToIgnoreCase(t.Title) : title; 
 	}
 
 }
