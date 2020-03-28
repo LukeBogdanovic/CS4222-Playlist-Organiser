@@ -20,6 +20,7 @@ class Track implements Comparable<Track>{
 		this.Title = title;
 	}
 	
+	@Override
 	public String toString() {
 		String listing,trackTime;
 		int minutes,seconds;
@@ -27,16 +28,17 @@ class Track implements Comparable<Track>{
 		seconds = Duration % 60;
 		trackTime = minutes + ":" + seconds;
 		if(Year == 0 && Duration == 0) {
-			listing = "Title:" + Title + "\n" + "Artist:" +  Artist;
+			listing = "Title:" + Title + ",Artist:" +  Artist;
 		}else {
-			listing = "Title:" + Title + "Released:" + Year + "\n" + "Artist:" +  Artist + "\n" + "Duration:" + trackTime;
+			listing = "Title:" + Title + ",Released:" + Year + ",Artist:" + Artist + ",Duration:" + trackTime;
 		}
 		return listing;
 	}
 	
+	@Override
 	public int compareTo(Track t) {
 		int title = this.Title.compareToIgnoreCase(t.Title);
 		return title == 0 ? this.Title.compareToIgnoreCase(t.Title) : title; 
 	}
-
+	
 }
