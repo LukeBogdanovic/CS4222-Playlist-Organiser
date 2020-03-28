@@ -6,7 +6,7 @@ public class Playlist {
 	private List<Track> Tracks;
 	
 	public Playlist(String playlist) {
-		List<Track> Tracks = new ArrayList<Track>();
+		List<Track> trackList = new ArrayList<Track>(Tracks);
 		this.Playlist = playlist;
 	}
 	
@@ -57,11 +57,15 @@ public class Playlist {
 		Random rand = new Random();
 		if(random) {
 			int r = rand.nextInt(Tracks.size());
-			for(int i = 0; i <)
-			   Track shuffle = Tracks.get(r);
-			   System.out.println(shuffle);
+			for(int i = 0; i < Tracks.size();i++) {
+			    Track shuffle = Tracks.get(r);
+			    System.out.println("Now Playing:" + shuffle);
+			}
 		}else if(!random) {
-			System.out.println();
+			for(int i = 0; i < Tracks.size();i++) {
+				Track track = Tracks.get(i);
+				System.out.println("Now Playing:" + track);
+			}
 		}
 	}
 	
