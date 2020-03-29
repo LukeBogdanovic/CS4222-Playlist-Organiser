@@ -15,10 +15,7 @@ public class Playlist {
 	   String playlist,name;
 	   name  = Playlist;
 	   playlist = name;
-	   for(int i = 0;i < Tracks.size(); i++) {
-		    String track = Tracks.get(i).toString();
-		    playlist = playlist + "\n" + track;
-	   }
+	   playlist = playlist + "\n" + Tracks;
 	   return playlist;
 	}
 	
@@ -38,9 +35,8 @@ public class Playlist {
 	}
 	
 	public boolean remove(String title) {
-		String Title;
 		for(int i = 0; i < Tracks.size();i++) {
-			Title = getTitle(Tracks.get(i));
+			String Title = getTitle(Tracks.get(i));
 		    if(title.contentEquals(Title)) {
 			   Tracks.remove(i); 
 		    }
