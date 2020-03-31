@@ -54,7 +54,7 @@ public class Playlist {
 			for(int i = 0; i < Tracks.size();i++) {
 				System.out.println(Tracks.get(i));
 			}
-		}
+		} 
 	}
 	
 	public void play(boolean random) {
