@@ -38,7 +38,8 @@ public class Playlist {
 		for(int i = 0; i < Tracks.size();i++) {
 			String Title = getTitle(Tracks.get(i));
 		    if(title.contentEquals(Title)) {
-			   Tracks.remove(i); 
+			   Tracks.remove(i);
+			   return true;
 		    }
 		}
 		return false; 
