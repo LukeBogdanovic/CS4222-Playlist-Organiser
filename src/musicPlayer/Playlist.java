@@ -10,12 +10,15 @@ public class Playlist {
 		this.Playlist = playlist;
 	}
 	
-	@Override
+	public Playlist() {
+		this.Tracks = new ArrayList<Track>();
+		this.Playlist = "My Playlist";
+	}
+	
 	public String toString() {
 	   String playlist,name;
-	   name  = Playlist;
-	   playlist = name;
-	   playlist = playlist + "\n" + Tracks;
+	   name = Playlist;
+	   playlist = name + "\n" + Tracks;
 	   return playlist;
 	}
 	
@@ -30,15 +33,13 @@ public class Playlist {
 	}
 	
 	public void add(Track t) {
-		Track track = new Track(t.Title,t.Artist,t.Year,t.Duration);
-		Tracks.add(track);
+		Tracks.add(t);
 	}
 	
 	public boolean remove(String title) {
-		for(int i = 0; i < Tracks.size();i++) {
-			String Title = getTitle(Tracks.get(i));
-		    if(title.contentEquals(Title)) {
-			   Tracks.remove(i);
+		for(Track t : Tracks) {
+		    if(t.getTitle().toUpperCase().compareTo(title.toUpperCase()) == 0) {
+			   Tracks.remove(t);
 			   return true;
 		    }
 		}
@@ -57,60 +58,50 @@ public class Playlist {
 		} 
 	}
 	
-	public void play(boolean random) {
-		Random rand = new Random();
+	public void playAll(boolean random) {
 		if(random) {
-			List<Track> randomised = new ArrayList<Track>(Tracks.size());
-			for(int i = 0; i <= Tracks.size();i++) {
-				int r = rand.nextInt(Tracks.size());
-			    randomised.add(Tracks.get(r));
-			    Tracks.remove(r);
-			    System.out.println("Now Playing:" + randomised.get(i));
+			List<Track> randomised = Tracks;
+			Collections.shuffle(randomised);
+			for(Track t : randomised) {			   
+			    System.out.println("Now Playing:" + t);
 			}
 		}else if(!random) {
-			for(int i = 0; i < Tracks.size();i++) {
-				Track track = Tracks.get(i);
-				System.out.println("Now Playing:" + track);
+			for(Track t : Tracks) {
+				System.out.println("Now Playing:" + t);
 			}
 		}
 	}
 	
 	public void playOnly(String artist) {
-		List<Track> artistSongs = new ArrayList<Track>();
-		if(artist.contains("The") || artist.contains("THE") || artist.contains("the")) {
-			String temp = "The" + " ";
-			artist = artist.replaceAll(temp, "");
-		}
-		for(int i = 0; i < Tracks.size();i++) {
-			String Artist = getArtist(Tracks.get(i));
-			if(Artist.equalsIgnoreCase(artist)) {
-				artistSongs.add(Tracks.get(i));
-				System.out.println("Now Playing:" + Tracks.get(i));
+		if(artist.toUpperCase().contains("the".toUpperCase())) {
+			String actualArtist = artist.replace("THE", "");
+		    for(Track t : Tracks) {			
+			    if(t.getArtist().equalsIgnoreCase(actualArtist)) {
+				    System.out.println("Now Playing:" + t);
+			    }
+			}
+		}else {
+			for(Track t : Tracks) {			
+			    if(t.getArtist().toUpperCase().contains(artist.toUpperCase())) {
+				    System.out.println("Now Playing:" + t);
+			    }
 			}
 		}
 	}
 	
 	public void playOnly(int year) {
-		List<Track> yearSongs = new ArrayList<Track>();
-		for(int i = 0; i < Tracks.size();i++) {
-			int Year = getYear(Tracks.get(i));
-			if(Year == year) {
-				yearSongs.add(Tracks.get(i));
-				System.out.println("Now Playing:" + Tracks.get(i));
+		for(Track t : Tracks) {			
+			if(t.getYear() == year) {
+				System.out.println("Now Playing:" + t );
 			}
 		}
 	}
 	
-	private static int getYear(Track t) {
-		return t.Year;
+	public String getPlaylistName() {
+		return this.Playlist;
 	}
 	
-	private static String getArtist(Track t) {
-		return t.Artist;
+	public void setPlaylistName(String name) {		
+		this.Playlist = name;	
 	}
-	
-	private String getTitle(Track t) {
-		return t.Title;
-	}
-
 }
